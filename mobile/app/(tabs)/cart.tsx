@@ -4,21 +4,12 @@ import { useCartStore } from "@/store/cart";
 import { Image } from "expo-image";
 import CardActions from "@/components/shared/CardActions";
 import { ProductType } from "@/lib/client/dbCollections";
-import { useShallow } from "zustand/react/shallow";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CartScreen() {
-  const { cart, getTotalPrice, getTotalItems, clearCart } = useCartStore(
-    useShallow((state) => ({
-      cart: state.cart,
-      getTotalPrice: state.getTotalPrice,
-      getTotalItems: state.getTotalItems,
-      clearCart: state.clearCart,
-    })),
-  );
-
-  const totalPrice = getTotalPrice();
-  const totalItems = getTotalItems();
+  const cart = useCartStore((state) => state.cart);
+  const totalPrice = useCartStore((state) => state.getTotalPrice());
+  const totalItems = useCartStore((state) => state.getTotalItems());
 
   if (cart.length === 0) {
     return (
