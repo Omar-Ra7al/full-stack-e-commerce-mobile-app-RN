@@ -1,4 +1,12 @@
+export interface ProductType {
+  id?: string;
+  name: string;
+  price: number;
+  description: string;
+  url: string;
+}
+
 export const CLIENT_DB_COLLECTIONS = {
-  users: {} as { email: string; role: "admin" | "user" },
+  products: {} as ProductType,
   orders: {} as { total: number; userId: string },
 } as const;
