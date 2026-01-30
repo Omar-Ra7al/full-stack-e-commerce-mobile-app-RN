@@ -10,11 +10,6 @@ export interface CartItem {
   stock?: number;
 }
 
-export interface PromoCodeData {
-  code: string;
-  discount: number;
-}
-
 export interface CartState {
   cart: CartItem[];
 

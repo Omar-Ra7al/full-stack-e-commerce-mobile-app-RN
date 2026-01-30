@@ -5,13 +5,16 @@ export const addProduct = async (
   name: string,
   price: number,
   description: string,
+  stock: number,
 ) => {
   return await adminDb.createDoc("products", {
     description,
     name,
     price,
     id: "",
-    url: "https://images.squarespace-cdn.com/content/v1/5ed6e10fb011a123217ba702/1727139534806-K219WNSVFLFTG6QOO2I3/unsplash-image-164_6wVEHfI.jpg",
+    stock: stock || 0,
+    image:
+      "https://images.squarespace-cdn.com/content/v1/5ed6e10fb011a123217ba702/1727139534806-K219WNSVFLFTG6QOO2I3/unsplash-image-164_6wVEHfI.jpg",
   });
 };
 

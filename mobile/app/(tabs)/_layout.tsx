@@ -2,8 +2,10 @@ import { Tabs } from "expo-router";
 import { House, ShoppingCart, User2Icon } from "lucide-react-native";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { useCartStore } from "@/store/cart";
 export default function RootLayout() {
+  const cartItems = useCartStore((s) => s.getTotalItems());
+
   return (
     <SafeAreaView className="flex-1 bg-primary">
       <StatusBar barStyle="light-content" />
@@ -37,7 +39,7 @@ export default function RootLayout() {
           options={{
             title: "Cart",
             tabBarIcon: ({ color }) => <ShoppingCart color={color} />,
-            tabBarBadge: 3,
+            tabBarBadge: cartItems > 0 ? cartItems : undefined,
           }}
         />
       </Tabs>

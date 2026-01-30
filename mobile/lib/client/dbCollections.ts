@@ -3,7 +3,9 @@ export interface ProductType {
   name: string;
   price: number;
   description: string;
-  url: string;
+  image: string;
+  stock?: number;
+  quantity?: number;
 }
 
 export const CLIENT_DB_COLLECTIONS = {

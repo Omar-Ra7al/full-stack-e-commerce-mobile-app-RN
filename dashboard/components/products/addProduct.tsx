@@ -10,7 +10,12 @@ const CreateProduct = () => {
       <FormBuilder
         schema={ProductSchema}
         onSubmit={async (data) => {
-          const res = await addProduct(data.name, data.price, data.description);
+          const res = await addProduct(
+            data.name,
+            data.price,
+            data.description,
+            data.stock,
+          );
           if (res.success) {
             toast.success("Product added successfully");
           } else {

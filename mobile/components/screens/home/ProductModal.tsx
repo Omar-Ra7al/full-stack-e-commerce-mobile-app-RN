@@ -31,7 +31,7 @@ const ProductModal = ({
 
             <View className="w-full h-64 bg-secondary/5">
               <Image
-                source={{ uri: selectedProduct?.url }}
+                source={{ uri: selectedProduct?.image }}
                 style={{ width: "100%", height: "100%" }}
                 contentFit="cover"
               />

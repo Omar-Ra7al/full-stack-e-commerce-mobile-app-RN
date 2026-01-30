@@ -9,7 +9,6 @@ import { clientDb } from "@/lib/client";
 import { useState } from "react";
 import ProductCard from "@/components/shared/ProductCard";
 import useFetch from "@/hooks/useFetch";
-import { ProductType } from "@/lib/client/dbCollections";
 import { ShoppingBag } from "lucide-react-native";
 
 const fetchProductsData = async () => {
@@ -32,21 +31,14 @@ export default function HomeScreen() {
     refetch,
   } = useFetch(() => fetchProductsData());
 
-  console.log("HomeScreen - products:", products);
-  console.log("HomeScreen - loading:", productsLoading);
-  console.log("HomeScreen - error:", productsError);
-
+  // Refresh Products
   const [refresh, setRefresh] = useState(false);
   const handleRefresh = async () => {
     setRefresh(true);
     await refetch();
     setRefresh(false);
   };
-
-  const handleProductPress = (product: ProductType) => {
-    // TODO: Navigate to product detail screen
-    console.log("Product pressed:", product.name);
-  };
+  // >>
 
   // Header Component
   const ListHeader = () => (
@@ -104,12 +96,7 @@ export default function HomeScreen() {
     <View className="flex-1 bg-primary">
       <FlatList
         data={products && Array.isArray(products) ? products : []}
-        renderItem={({ item }) => (
-          <ProductCard
-            product={item}
-            onPress={() => handleProductPress(item)}
-          />
-        )}
+        renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
         numColumns={2}
         columnWrapperStyle={{
