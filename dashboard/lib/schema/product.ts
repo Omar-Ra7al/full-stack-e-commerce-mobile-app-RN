@@ -20,6 +20,11 @@ export const ProductSchema = z.object({
       label: "Description",
       placeholder: "Enter product description",
     }),
+  stock: z.number().min(0, "Stock must be at least 0").meta({
+    type: FieldType.number,
+    label: "Stock",
+    placeholder: "Enter product stock",
+  }),
 });
 
 export type Product = z.infer<typeof ProductSchema> & { id: string };

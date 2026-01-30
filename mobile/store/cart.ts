@@ -1,10 +1,5 @@
 import { create } from "zustand";
 
-export interface FreeSample {
-  id: string;
-  name: string;
-}
-
 export interface CartItem {
   id: string;
   name: string;
@@ -12,7 +7,7 @@ export interface CartItem {
   quantity: number;
   image: string;
   description: string;
-  stock?: number; // Optional for backward compatibility
+  stock?: number;
 }
 
 export interface PromoCodeData {
@@ -22,28 +17,19 @@ export interface PromoCodeData {
 
 export interface CartState {
   cart: CartItem[];
-  promoCode: PromoCodeData | null;
+
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   incrementQuantity: (id: string) => void;
   decrementQuantity: (id: string) => void;
-  clearCart: () => void;
-  setPromoCode: (code: string, discount: number) => void;
-  clearPromoCode: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
   isInCart: (id: string) => boolean;
-
-  hasHydrated: boolean;
-  setHasHydrated: (v: boolean) => void;
+  clearCart: () => void;
 }
 
 export const useCartStore = create<CartState>()((set, get) => ({
   cart: [],
-  hasHydrated: false,
-  setHasHydrated: (v) => set({ hasHydrated: v }),
-  promoCode: null,
-  cartOpen: false,
 
   addItem: (item: CartItem) => {
     // Prevent adding if stock is 0 or less
@@ -118,14 +104,6 @@ export const useCartStore = create<CartState>()((set, get) => ({
     });
   },
 
-  clearCart: () => set({ cart: [], promoCode: null }),
-
-  setPromoCode: (code: string, discount: number) => {
-    set({ promoCode: { code, discount } });
-  },
-
-  clearPromoCode: () => set({ promoCode: null }),
-
   getTotalPrice: () => {
     const subtotal = get().cart.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -133,7 +111,11 @@ export const useCartStore = create<CartState>()((set, get) => ({
     );
     return subtotal;
   },
+
   getTotalItems: () =>
     get().cart.reduce((total, item) => total + item.quantity, 0),
+
   isInCart: (id: string) => get().cart.some((item) => item.id === id),
+
+  clearCart: () => set({ cart: [] }),
 }));
