@@ -6,6 +6,7 @@ import { View, Text, Pressable, TextInput } from "react-native";
 import ScreenWraper from "@/components/shared/ScreenWraper";
 import { clientAuth } from "@/lib/client";
 import { useRouter } from "expo-router";
+import GoogleAuthBtn from "./GoogleAuthBtn";
 
 const Login = () => {
   const router = useRouter();
@@ -111,6 +112,8 @@ const Login = () => {
             </Text>
           </Pressable>
         </View>
+
+        <GoogleAuthBtn />
 
         <View className="items-center">
           <Text className="text-sm text-zinc-500">

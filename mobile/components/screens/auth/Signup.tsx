@@ -6,6 +6,7 @@ import { View, Text, Pressable, TextInput } from "react-native";
 import ScreenWraper from "@/components/shared/ScreenWraper";
 import { clientAuth } from "@/lib/client";
 import { useRouter } from "expo-router";
+import GoogleAuthBtn from "./GoogleAuthBtn";
 
 const Signup = () => {
   const router = useRouter();
@@ -110,6 +111,8 @@ const Signup = () => {
               {isSubmitting ? "Loading..." : "Signup"}
             </Text>
           </Pressable>
+
+          <GoogleAuthBtn />
         </View>
 
         <View className="flex-row items-center justify-center gap-2">
