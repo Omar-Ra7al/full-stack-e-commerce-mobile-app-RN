@@ -20,6 +20,7 @@ const Page = async ({ params }: EditProductProps) => {
         name: product.data.name,
         price: product.data.price,
         description: product.data.description,
+        stock: product.data.stock,
       }}
     />
   );

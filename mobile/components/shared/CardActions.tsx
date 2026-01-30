@@ -4,7 +4,13 @@ import { ProductType } from "@/lib/client/dbCollections";
 import { useCartStore } from "@/store/cart";
 import { ShoppingCartIcon, TrashIcon } from "lucide-react-native";
 
-const CardActions = ({ product }: { product: ProductType }) => {
+const CardActions = ({
+  product,
+  className,
+}: {
+  product: ProductType;
+  className?: string;
+}) => {
   const addItem = useCartStore((s) => s.addItem);
   const removeItem = useCartStore((s) => s.removeItem);
   const incrementQuantity = useCartStore((s) => s.incrementQuantity);
@@ -43,20 +49,22 @@ const CardActions = ({ product }: { product: ProductType }) => {
       {!inCart ? (
         <Pressable
           onPress={handleAddToCart}
-          className="bg-primary px-3 py-1.5 rounded-full"
+          className="bg-primary px-3 py-1.5 rounded-full items-center justify-center"
         >
           <Text className="text-secondary text-sm font-semibold text-center">
             Add to Cart <ShoppingCartIcon size={13} color={"white"} />
           </Text>
         </Pressable>
       ) : (
-        <View className="flex-1 flex-nowrap flex flex-row justify-between gap-2">
-          <View className="flex-1 w-[80%] flex-row justify-between items-center gap-2 bg-primary rounded-full">
+        <View
+          className={`flex-row justify-between items-center gap-2 rounded-full ${className}`}
+        >
+          <View className="flex-1 flex-row justify-between items-center bg-primary rounded-full px-3 py-1.5">
             <Pressable
+              className="px-2 h-full"
               onPress={() => decrementQuantity(product.id!)}
-              className="bg-primary px-3 py-1.5 rounded-full"
             >
-              <Text className="text-secondary text-sm font-semibold text-center">
+              <Text className="text-secondary text-lg font-semibold text-center">
                 -
               </Text>
             </Pressable>
@@ -66,10 +74,10 @@ const CardActions = ({ product }: { product: ProductType }) => {
             </Text>
 
             <Pressable
+              className="px-2 h-full"
               onPress={() => incrementQuantity(product.id!)}
-              className="bg-primary px-3 py-1.5 rounded-full"
             >
-              <Text className="text-secondary text-sm font-semibold text-center">
+              <Text className="text-secondary text-lg font-semibold text-center">
                 +
               </Text>
             </Pressable>
@@ -77,9 +85,9 @@ const CardActions = ({ product }: { product: ProductType }) => {
 
           <Pressable
             onPress={handleRemoveFromCart}
-            className="bg-primary px-3 py-1.5 rounded-full w-[25%] flex items-center justify-center"
+            className="bg-primary px-4 py-2.5 rounded-full items-center justify-center"
           >
-            <TrashIcon size={13} color={"red"} />
+            <TrashIcon size={16} color={"red"} />
           </Pressable>
         </View>
       )}

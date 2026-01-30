@@ -10,6 +10,7 @@ import { useState } from "react";
 import ProductCard from "@/components/shared/ProductCard";
 import useFetch from "@/hooks/useFetch";
 import { ShoppingBag } from "lucide-react-native";
+import ScreenWraper from "@/components/shared/ScreenWraper";
 
 const fetchProductsData = async () => {
   try {
@@ -93,8 +94,9 @@ export default function HomeScreen() {
   };
 
   return (
-    <View className="flex-1 bg-primary">
+    <ScreenWraper>
       <FlatList
+        className="flex-1"
         data={products && Array.isArray(products) ? products : []}
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
@@ -102,19 +104,14 @@ export default function HomeScreen() {
         columnWrapperStyle={{
           justifyContent: "space-between",
           gap: 12,
-          marginBottom: 12,
         }}
         ListHeaderComponent={ListHeader}
         ListEmptyComponent={EmptyState}
-        contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingBottom: 32,
-        }}
         refreshControl={
           <RefreshControl refreshing={refresh} onRefresh={handleRefresh} />
         }
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </ScreenWraper>
   );
 }

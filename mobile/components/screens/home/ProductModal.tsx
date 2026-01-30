@@ -2,6 +2,7 @@ import { Modal, View, Text, Pressable } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CardActions from "@/components/shared/CardActions";
 
 const ProductModal = ({
   modalVisible,
@@ -23,7 +24,6 @@ const ProductModal = ({
       >
         {/* Overlay */}
         <View className="flex-1 bg-black/50">
-          {/* ✅ Safe area INSIDE modal */}
           {/* Sheet */}
           <View className="flex-1 bg-primary rounded-t-3xl pt-4">
             {/* Drag Indicator */}
@@ -38,12 +38,20 @@ const ProductModal = ({
             </View>
 
             <View className="flex-1 p-5">
-              <Text className="text-secondary text-2xl font-bold mb-2">
+              <Text className="text-secondary text-2xl font-bold mb-2 uppercase">
                 {selectedProduct?.name}
               </Text>
               <Text className="text-secondary/80 mb-4">
                 {selectedProduct?.description}
               </Text>
+
+              {/* Card Actions */}
+              <View className="mt-4">
+                <CardActions
+                  product={selectedProduct}
+                  className="border border-secondary/20 w-[55%] mx-start"
+                />
+              </View>
             </View>
 
             <Pressable

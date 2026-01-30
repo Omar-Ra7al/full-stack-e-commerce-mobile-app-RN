@@ -5,6 +5,7 @@ import { Image } from "expo-image";
 import CardActions from "@/components/shared/CardActions";
 import { ProductType } from "@/lib/client/dbCollections";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ScreenWraper from "@/components/shared/ScreenWraper";
 
 export default function CartScreen() {
   const cart = useCartStore((state) => state.cart);
@@ -27,7 +28,7 @@ export default function CartScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-primary">
+    <ScreenWraper>
       <View className="flex-1">
         {/* Header */}
         <View className="px-4 py-4 border-b border-secondary/10">
@@ -130,6 +131,6 @@ export default function CartScreen() {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </ScreenWraper>
   );
 }
