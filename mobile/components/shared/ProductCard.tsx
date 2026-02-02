@@ -20,7 +20,7 @@ const ProductCard = ({ product, onPress }: ProductCardProps) => {
         setModalVisible(true);
       }}
       activeOpacity={0.7}
-      className="flex-1 h-full rounded-xl overflow-hidden bg-secondary/10 border border-secondary/20"
+      className="mb-2 min-h-80 ms-2 flex-1 h-full rounded-xl overflow-hidden bg-secondary/10 border border-secondary/20"
       style={{ minWidth: 100, maxWidth: 180 }}
     >
       {/* Product Image */}

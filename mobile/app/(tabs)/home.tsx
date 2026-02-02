@@ -96,15 +96,12 @@ export default function HomeScreen() {
   return (
     <ScreenWraper>
       <FlatList
-        className="flex-1"
+        className="w-full flex-1"
         data={products && Array.isArray(products) ? products : []}
         renderItem={({ item }) => <ProductCard product={item} />}
         keyExtractor={(item, index) => item.id?.toString() || index.toString()}
         numColumns={2}
-        columnWrapperStyle={{
-          justifyContent: "space-between",
-          gap: 12,
-        }}
+        contentContainerStyle={{ gap: 6 }}
         ListHeaderComponent={ListHeader}
         ListEmptyComponent={EmptyState}
         refreshControl={

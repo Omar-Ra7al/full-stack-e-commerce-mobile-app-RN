@@ -51,7 +51,7 @@ const CardActions = ({
           onPress={handleAddToCart}
           className="bg-primary px-3 py-1.5 rounded-full items-center justify-center"
         >
-          <Text className="text-secondary text-sm font-semibold text-center">
+          <Text className="text-secondary text-sm font-semibold text-center w-full">
             Add to Cart <ShoppingCartIcon size={13} color={"white"} />
           </Text>
         </Pressable>
